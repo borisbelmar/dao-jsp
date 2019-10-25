@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+<script src="js/functions.js"></script>
 </head>
 <body>
     <section class="section">
@@ -18,15 +19,17 @@
                                 <div class="content has-text-centered">
                                     <h3>Login</h3>
                                 </div>
-                                <form action="AdminUser" method="POST">
+                                <form action="AdminUser" method="POST" id="form" onsubmit="return validate()">
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="text" placeholder="Username" name="username" required>
+                                            <input class="input" type="text" placeholder="Username" name="username" onfocusout="checkUsername()">
+                                            <small id="error" class="has-text-danger is-hidden">El campo no puede estar vacío</small>
                                         </div>
                                     </div>
                                     <div class="field">
                                         <div class="control">
-                                            <input class="input" type="password" placeholder="Password" name="pass" required>
+                                            <input class="input" type="password" placeholder="Password" name="pass" onfocusout="checkPass()">
+                                            <small id="errorPass" class="has-text-danger is-hidden">Debe ingresar una contraseña</small>
                                         </div>
                                     </div>
                                     <div class="field">
@@ -46,7 +49,7 @@
                         </c:when>
 						<c:otherwise>
 							<c:redirect url = "./welcome.jsp"/>
-						</c:otherwise>
+						</c:otherwise> 
 					</c:choose>
                 </div>
             </div>
